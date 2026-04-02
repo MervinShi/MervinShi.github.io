@@ -37,64 +37,14 @@ let currentLanguage = localStorage.getItem('siteLanguage') || 'zh';
 
 // Set language function
 function setLanguage(lang) {
-    currentLanguage = lang;
-    localStorage.setItem('siteLanguage', lang);
-    
-    // Update HTML lang attribute
-    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
-    
-    // Update navigation links
-    document.querySelectorAll('.nav-link').forEach(link => {
-        const zhText = link.getAttribute('data-lang-zh');
-        const enText = link.getAttribute('data-lang-en');
-        if (zhText && enText) {
-            link.textContent = lang === 'zh' ? zhText : enText;
-        }
-    });
-    
-    // Update language button
-    document.querySelector('.current-lang').textContent = translations[lang].currentLang;
-    
-    // Update resume link
-    const resumeLink = document.getElementById('resumeLink');
-    const resumeText = document.getElementById('resumeText');
-    if (resumeLink && resumeText) {
-        resumeLink.href = lang === 'zh' ? './resume/Resume_CN.pdf' : './resume/Resume_EN.pdf';
-        resumeText.textContent = translations[lang].resumeText;
-    }
-    
-    // Update scroll text
-    const scrollText = document.querySelector('.scroll-indicator span');
-    if (scrollText) {
-        scrollText.textContent = translations[lang].scrollText;
-    }
-    
-    // Update hero tags
-    const tags = document.querySelectorAll('.tag');
-    if (tags[0]) tags[0].textContent = translations[lang].heroTag1;
-    if (tags[1]) tags[1].textContent = translations[lang].heroTag2;
-    if (tags[2]) tags[2].textContent = translations[lang].heroTag3;
-    
-    // Update buttons
-    const contactBtn = document.querySelector('.hero-actions .btn-primary');
-    if (contactBtn) contactBtn.textContent = translations[lang].contactBtn;
-    
-    // Update contact section labels
-    const contactLabels = document.querySelectorAll('.contact-item strong');
-    if (contactLabels[0]) contactLabels[0].textContent = translations[lang].contactEmail;
-    if (contactLabels[1]) contactLabels[1].textContent = translations[lang].contactPhone;
-    if (contactLabels[2]) contactLabels[2].textContent = translations[lang].contactGithub;
-    
+    // Use applyLanguage instead of reloading
+    applyLanguage(lang);
+
     // Close dropdown
     const dropdown = document.querySelector('.nav-dropdown');
     if (dropdown) {
         dropdown.classList.remove('active');
     }
-    
-    // Save scroll position and reload page
-    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-    sessionStorage.setItem('scrollPosition', scrollPosition);
-    location.reload();
 }
 
 // Toggle language dropdown
@@ -120,11 +70,11 @@ window.addEventListener('load', () => {
 function applyLanguage(lang) {
     currentLanguage = lang;
     localStorage.setItem('siteLanguage', lang);
-    
+
     // Update HTML lang attribute
     document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
-    
-    // Update all elements with language attributes
+
+    // Update all elements with language attributes (including nested elements)
     document.querySelectorAll('[data-lang-zh]').forEach(element => {
         const zhText = element.getAttribute('data-lang-zh');
         const enText = element.getAttribute('data-lang-en');
@@ -132,48 +82,20 @@ function applyLanguage(lang) {
             element.textContent = lang === 'zh' ? zhText : enText;
         }
     });
-    
-    // Update navigation links
-    document.querySelectorAll('.nav-link').forEach(link => {
-        const zhText = link.getAttribute('data-lang-zh');
-        const enText = link.getAttribute('data-lang-en');
-        if (zhText && enText) {
-            link.textContent = lang === 'zh' ? zhText : enText;
-        }
-    });
-    
+
     // Update language button
-    document.querySelector('.current-lang').textContent = translations[lang].currentLang;
-    
+    const currentLangEl = document.querySelector('.current-lang');
+    if (currentLangEl) {
+        currentLangEl.textContent = translations[lang].currentLang;
+    }
+
     // Update resume link
     const resumeLink = document.getElementById('resumeLink');
-    const resumeText = document.getElementById('resumeText');
-    if (resumeLink && resumeText) {
+    if (resumeLink) {
         resumeLink.href = lang === 'zh' ? './resume/Resume_CN.pdf' : './resume/Resume_EN.pdf';
-        // Resume text is updated via data-lang attributes
     }
-    
-    // Update scroll text
-    const scrollText = document.querySelector('.scroll-indicator span');
-    if (scrollText) {
-        scrollText.textContent = translations[lang].scrollText;
-    }
-    
-    // Update hero tags (backup if data-lang not set)
-    const tags = document.querySelectorAll('.tag');
-    if (tags[0] && !tags[0].getAttribute('data-lang-zh')) tags[0].textContent = translations[lang].heroTag1;
-    if (tags[1] && !tags[1].getAttribute('data-lang-zh')) tags[1].textContent = translations[lang].heroTag2;
-    if (tags[2] && !tags[2].getAttribute('data-lang-zh')) tags[2].textContent = translations[lang].heroTag3;
-    
-    // Update buttons (backup if data-lang not set)
-    const contactBtn = document.querySelector('.hero-actions .btn-primary');
-    if (contactBtn && !contactBtn.getAttribute('data-lang-zh')) contactBtn.textContent = translations[lang].contactBtn;
-    
-    // Update contact section labels (backup if data-lang not set)
-    const contactLabels = document.querySelectorAll('.contact-item strong');
-    if (contactLabels[0] && !contactLabels[0].getAttribute('data-lang-zh')) contactLabels[0].textContent = translations[lang].contactEmail;
-    if (contactLabels[1] && !contactLabels[1].getAttribute('data-lang-zh')) contactLabels[1].textContent = translations[lang].contactPhone;
-    if (contactLabels[2] && !contactLabels[2].getAttribute('data-lang-zh')) contactLabels[2].textContent = translations[lang].contactGithub;
+
+    console.log(`Language changed to: ${lang}. Updated ${document.querySelectorAll('[data-lang-zh]').length} elements.`);
 }
 
 // Close dropdown when clicking outside
