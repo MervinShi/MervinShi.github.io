@@ -172,30 +172,128 @@ document.querySelectorAll('.interest-item, .tech-stack-section, .education-card,
     observer.observe(el);
 });
 
-// Simple fade-in animation for hero name - wait for font to load
-const heroName = document.getElementById('heroName');
-if (heroName) {
-    // Set a shorter timeout as fallback (1.5 seconds) for mobile performance
-    const fallbackTimeout = setTimeout(() => {
-        heroName.classList.add('visible');
-        console.log('Hero name shown via fallback timeout');
-    }, 1500);
+// Device detection helper
+const DeviceUtils = {
+    isMobile: () => window.innerWidth <= 768,
+    isTablet: () => window.innerWidth > 768 && window.innerWidth <= 1024,
+    isDesktop: () => window.innerWidth > 1024,
+    getTouchSupport: () => ('ontouchstart' in window) || (navigator.maxTouchPoints > 0),
+    // Check for slow connection (mobile data)
+    isSlowConnection: () => {
+        const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        return connection && (connection.effectiveType === '2g' || connection.effectiveType === 'slow-2g');
+    }
+};
 
-    // Check if custom font is loaded
-    document.fonts.ready.then(() => {
-        clearTimeout(fallbackTimeout);
-        // Small delay to ensure font is actually rendered
-        setTimeout(() => {
-            heroName.classList.add('visible');
-            console.log('Hero name shown via font ready');
-        }, 100);
-    }).catch(() => {
-        // If font loading fails, show name anyway
-        clearTimeout(fallbackTimeout);
-        heroName.classList.add('visible');
-        console.log('Hero name shown via error fallback');
-    });
-}
+// Hero animation manager - handles device-specific animations
+const HeroAnimation = {
+    elements: {
+        name: document.getElementById('heroName'),
+        subtitle: document.querySelector('.hero-subtitle'),
+        description: document.querySelector('.hero-description'),
+        actions: document.querySelector('.hero-actions'),
+        contact: document.querySelector('.hero-contact')
+    },
+
+    // Get animation timing based on device
+    getTimings() {
+        const isMobile = DeviceUtils.isMobile();
+
+        return {
+            fontLoadTimeout: isMobile ? 800 : 2000,
+            contentDelay: 300,
+            subtitleDelay: 200,
+            descriptionDelay: isMobile ? 300 : 400,
+            actionsDelay: isMobile ? 400 : 600,
+            contactDelay: isMobile ? 500 : 800
+        };
+    },
+
+    // Show hero content with staggered animation
+    showContent(timings) {
+        const { subtitleDelay, descriptionDelay, actionsDelay, contactDelay } = timings;
+
+        const elements = this.elements;
+        const delays = [
+            { el: elements.subtitle, delay: subtitleDelay, name: 'subtitle' },
+            { el: elements.description, delay: descriptionDelay, name: 'description' },
+            { el: elements.actions, delay: actionsDelay, name: 'actions' },
+            { el: elements.contact, delay: contactDelay, name: 'contact' }
+        ];
+
+        delays.forEach(({ el, delay, name }) => {
+            if (el) {
+                setTimeout(() => {
+                    el.classList.add('visible');
+                    console.log(`Hero ${name} shown`);
+                }, delay);
+            }
+        });
+    },
+
+    // Initialize hero animation
+    init() {
+        const { name } = this.elements;
+        if (!name) return;
+
+        const timings = this.getTimings();
+        const { fontLoadTimeout, contentDelay } = timings;
+
+        // Fallback timeout
+        const fallbackTimeout = setTimeout(() => {
+            name.classList.add('visible');
+            this.showContent(timings);
+            console.log('Hero content shown via fallback');
+        }, fontLoadTimeout);
+
+        // Wait for font to load
+        document.fonts.ready.then(() => {
+            clearTimeout(fallbackTimeout);
+            name.classList.add('visible');
+            console.log('Hero name shown (font ready)');
+
+            // Show content after font is loaded
+            setTimeout(() => {
+                this.showContent(timings);
+            }, contentDelay);
+        }).catch(() => {
+            clearTimeout(fallbackTimeout);
+            name.classList.add('visible');
+            this.showContent(timings);
+            console.log('Hero content shown (font error)');
+        });
+    }
+};
+
+// Background image loader - ensures compatibility across devices
+const BackgroundLoader = {
+    init() {
+        const bgImage = new Image();
+        bgImage.src = 'images/background.jpg';
+
+        bgImage.onload = () => {
+            console.log('Background image loaded');
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.backgroundImage = `url('images/background.jpg')`;
+            }
+        };
+
+        bgImage.onerror = () => {
+            console.error('Background image failed to load, using fallback gradient');
+            // Gradient fallback is already set in CSS
+        };
+
+        // For mobile with slow connection, add a longer timeout
+        if (DeviceUtils.isSlowConnection()) {
+            setTimeout(() => {
+                if (!bgImage.complete) {
+                    console.log('Background image taking too long, using fallback');
+                }
+            }, 3000);
+        }
+    }
+};
 
 // Gallery functionality - load images from images folder with performance optimization
 async function loadGalleryImages() {
@@ -366,5 +464,15 @@ function openLightbox(imageSrc) {
     });
 }
 
-// Load gallery images on page load
-window.addEventListener('DOMContentLoaded', loadGalleryImages);
+// Initialize all components on DOMContentLoaded
+window.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM Content Loaded');
+    console.log(`Device: ${DeviceUtils.isMobile() ? 'Mobile' : DeviceUtils.isTablet() ? 'Tablet' : 'Desktop'}`);
+    console.log(`Touch support: ${DeviceUtils.getTouchSupport() ? 'Yes' : 'No'}`);
+    console.log(`Slow connection: ${DeviceUtils.isSlowConnection() ? 'Yes' : 'No'}`);
+
+    // Initialize components
+    BackgroundLoader.init();
+    HeroAnimation.init();
+    loadGalleryImages();
+});

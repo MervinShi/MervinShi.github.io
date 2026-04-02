@@ -224,16 +224,9 @@ body {
     overflow: hidden;
 }
 
-/* Fallback background color */
+/* Fallback gradient background (shown while image loads or if it fails) */
 .hero {
     background-color: #1d1d1f;
-}
-
-/* Fallback for when image doesn't load */
-@supports not (background-image: url('images/background.jpg')) {
-    .hero {
-        background: linear-gradient(135deg, #1d1d1f 0%, #424245 100%);
-    }
 }
 
 .hero::before {
@@ -289,8 +282,11 @@ body {
     margin-bottom: 40px;
     letter-spacing: -0.022em;
     line-height: 1.2;
-    animation: fadeInUp 0.8s ease forwards;
-    animation-delay: 0.6s;
+    transition: opacity 0.8s ease;
+}
+
+.hero-subtitle.visible {
+    opacity: 1;
 }
 
 .hero-description {
@@ -301,8 +297,11 @@ body {
     font-style: italic;
     letter-spacing: -0.022em;
     line-height: 1.2;
-    animation: fadeInUp 0.8s ease forwards;
-    animation-delay: 0.9s;
+    transition: opacity 0.8s ease;
+}
+
+.hero-description.visible {
+    opacity: 1;
 }
 
 .hero-actions {
@@ -312,8 +311,11 @@ body {
     margin-bottom: 40px;
     flex-wrap: wrap;
     opacity: 0;
-    animation: fadeInUp 0.8s ease forwards;
-    animation-delay: 1.2s;
+    transition: opacity 0.8s ease;
+}
+
+.hero-actions.visible {
+    opacity: 1;
 }
 
 .hero-contact {
@@ -322,29 +324,25 @@ body {
     gap: 32px;
     flex-wrap: wrap;
     opacity: 0;
-    animation: fadeInUp 0.8s ease forwards;
-    animation-delay: 1.5s;
+    transition: opacity 0.8s ease;
 }
 
+.hero-contact.visible {
+    opacity: 1;
+}
+
+.hero-subtitle,
+.hero-description,
+.hero-actions,
 .hero-contact {
-    display: flex;
-    justify-content: center;
-    gap: 32px;
-    flex-wrap: wrap;
-    opacity: 0;
-    animation: fadeInUp 0.8s ease forwards;
-    animation-delay: 1.5s;
+    transform: translateY(20px);
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.hero-subtitle.visible,
+.hero-description.visible,
+.hero-actions.visible,
+.hero-contact.visible {
+    transform: translateY(0);
 }
 
 .btn {
@@ -1134,22 +1132,22 @@ body {
     }
 
     .hero {
-        background-image: url('images/background.jpg');
+        background-image: url('images/background.jpg'), linear-gradient(135deg, #1d1d1f 0%, #424245 100%);
         background-size: cover;
         background-position: center top;
         background-attachment: scroll;
+        min-height: 100vh;
     }
 
     .hero-title {
         font-family: 'MingMeiXiangChunTian', 'Brush Script MT', 'Cursive', 'Segoe Script', 'Snell Roundhand', 'Bradley Hand', 'Chalkboard SE', 'Comic Sans MS', cursive;
         font-size: 36px;
-        /* Ensure font loads properly on mobile */
         font-weight: normal;
     }
 
     .hero-title-text {
-        /* Allow font loading animation on mobile */
-        transition: opacity 0.8s ease;
+        opacity: 1;
+        transition: opacity 0.3s ease;
     }
 
     .hero-tags {
@@ -1290,7 +1288,103 @@ body {
         flex-direction: column;
     }
 
+    .hero-actions .btn {
+        width: 100%;
+        max-width: 280px;
+    }
+
     .section-title {
         font-size: 28px;
+    }
+
+    /* Touch-friendly tap targets */
+    .nav-lang-btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    .gallery-nav {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        min-height: 44px;
+    }
+}
+
+/* Tablet specific adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .hero-title {
+        font-size: clamp(48px, 6vw, 72px);
+    }
+
+    .hero-subtitle {
+        font-size: clamp(16px, 2vw, 22px);
+    }
+
+    .hero-description {
+        font-size: clamp(18px, 2.5vw, 21px);
+    }
+}
+
+/* Desktop specific adjustments */
+@media (min-width: 1025px) {
+    .hero-title {
+        font-size: clamp(56px, 8vw, 96px);
+    }
+
+    .hero-subtitle {
+        font-size: clamp(22px, 2.5vw, 28px);
+    }
+
+    .hero-description {
+        font-size: clamp(19px, 2vw, 21px);
+    }
+}
+
+/* Performance optimizations for mobile */
+@media (max-width: 768px) {
+    /* Reduce shadow complexity */
+    .nav {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .project-card,
+    .education-card,
+    .contact-item {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    /* Optimize animations */
+    .hero-subtitle,
+    .hero-description,
+    .hero-actions,
+    .hero-contact {
+        will-change: opacity, transform;
+    }
+}
+
+/* High DPI screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    /* Sharper text for retina displays */
+    .hero-title {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .hero-subtitle,
+    .hero-description,
+    .hero-actions,
+    .hero-contact {
+        transition: none;
+        transform: none;
+        opacity: 1 !important;
+    }
+
+    .hero-title-text {
+        transition: none;
+        opacity: 1 !important;
     }
 }
