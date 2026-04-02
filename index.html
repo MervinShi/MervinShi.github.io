@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mervin Shi - AI Explorer | 哈尔滨工业大学（深圳）计算机科学与技术专业学生">
+    <meta name="keywords" content="Mervin Shi, AI, 人工智能, 大模型, 计算机, 哈工大">
+    <meta name="author" content="Mervin Shi">
+    <meta name="theme-color" content="#f5f5f7">
+    <title>Mervin Shi | AI Explorer</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        @font-face {
+            font-family: 'MingMeiXiangChunTian';
+            src: url('AaZhuNiWoMingMeiXiangChunTian/AaZhuNiWoMingMeiXiangChunTian-2.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" role="navigation" aria-label="主导航">
+        <div class="nav-container">
+            <a href="#" class="nav-logo" aria-label="Mervin Shi 首页">MervinShi</a>
+            <ul class="nav-menu" role="menubar">
+                <li role="none"><a href="#about" class="nav-link" role="menuitem" data-lang-zh="关于" data-lang-en="About">关于</a></li>
+                <li role="none"><a href="#education" class="nav-link" role="menuitem" data-lang-zh="教育" data-lang-en="Education">教育</a></li>
+                <li role="none"><a href="#skills" class="nav-link" role="menuitem" data-lang-zh="技能" data-lang-en="Skills">技能</a></li>
+                <li role="none"><a href="#gallery" class="nav-link" role="menuitem" data-lang-zh="摄影" data-lang-en="Gallery">摄影</a></li>
+                <li role="none"><a href="#interests" class="nav-link" role="menuitem" data-lang-zh="兴趣" data-lang-en="Interests">兴趣</a></li>
+                <li role="none"><a href="#contact" class="nav-link" role="menuitem" data-lang-zh="联系" data-lang-en="Contact">联系</a></li>
+                <li class="nav-dropdown" role="none">
+                    <button class="nav-lang-btn" onclick="toggleLangDropdown()" aria-label="切换语言" aria-expanded="false" aria-haspopup="true">
+                        <span aria-hidden="true">🌐</span>
+                        <span class="current-lang">中文</span>
+                        <span class="dropdown-arrow" aria-hidden="true">▼</span>
+                    </button>
+                    <div class="nav-dropdown-menu" id="langDropdown" role="menu">
+                        <a href="javascript:void(0)" onclick="setLanguage('zh')" role="menuitem">中文</a>
+                        <a href="javascript:void(0)" onclick="setLanguage('en')" role="menuitem">English</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="hero-title-text" id="heroName" data-lang-zh="施沫原" data-lang-en="Mervin Shi">施沫原</span>
+                </h1>
+                <p class="hero-subtitle fade-in-text" data-lang-zh="哈尔滨工业大学（深圳）｜计算机科学与技术 本科在读" data-lang-en="Harbin Institute of Technology (Shenzhen) | Computer Science & Technology Undergraduate">哈尔滨工业大学（深圳）｜计算机科学与技术 本科在读</p>
+                <p class="hero-description fade-in-text" data-lang-zh="用代码构建逻辑，用镜头记录世界" data-lang-en="Building logic with code, capturing world through lens"></p>
+                <div class="hero-actions">
+                    <a href="#contact" class="btn btn-primary" data-lang-zh="联系我" data-lang-en="Contact Me">联系我</a>
+                </div>
+                <div class="hero-contact">
+                    <a href="mailto:mervinshi66@gmail.com" class="contact-link" aria-label="发送邮件到 mervinshi66@gmail.com">📩 mervinshi66@gmail.com</a>
+                    <a href="https://github.com/MervinShi" target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="访问 GitHub 主页">🐙 GitHub</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <div class="scroll-indicator">
+                <span data-lang-zh="向下滚动" data-lang-en="Scroll Down">向下滚动</span>
+                <div class="scroll-arrow" aria-hidden="true">↓</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- About Section -->
+        <section class="section" id="about" aria-labelledby="about-title">
+            <div class="container">
+                <header class="section-header">
+                    <span class="section-label" aria-hidden="true">🧑‍💻</span>
+                    <h2 class="section-title" id="about-title" data-lang-zh="关于我" data-lang-en="About Me">关于我</h2>
+                </header>
+                <div class="about-content">
+                    <p data-lang-zh="我是一名好奇心驱动的计算机专业学习者，ENFP「快乐小狗」人格。深耕大模型应用开发、人工智能交互系统领域，具备极强的自主学习能力与创新创造力；多次主导团队项目，擅长统筹规划、高效沟通与落地执行，在学术实践与国际交流中持续成长。理性钻研技术的同时，热爱摄影、旅行与探索，在生活中汲取灵感，做有温度的技术人。"
+data-lang-en="I am a curiosity-driven computer science learner with an ENFP personality. Deeply committed to LLM application development and AI interaction systems, I possess strong self-learning abilities and creativity. I have led multiple team projects, excelling in planning, communication, and execution. While pursuing technical excellence, I'm passionate about photography, travel, and exploration, drawing inspiration from life to become a technologist with warmth and empathy.">
+                        我是一名好奇心驱动的计算机专业学习者，ENFP「快乐小狗」人格。
+                        深耕大模型应用开发、人工智能交互系统领域，具备极强的自主学习能力与创新创造力；
+                        多次主导团队项目，擅长统筹规划、高效沟通与落地执行，在学术实践与国际交流中持续成长。
+                        理性钻研技术的同时，热爱摄影、旅行与探索，在生活中汲取灵感，做有温度的技术人。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="section section-alt" id="education" aria-labelledby="education-title">
+            <div class="container">
+                <header class="section-header">
+                    <span class="section-label" aria-hidden="true">🎓</span>
+                    <h2 class="section-title" id="education-title" data-lang-zh="教育背景" data-lang-en="Education">教育背景</h2>
+                </header>
+                <article class="education-card">
+                    <div class="education-logo" aria-hidden="true">
+                        <span>HIT</span>
+                    </div>
+                    <div class="education-info">
+                        <h3 data-lang-zh="哈尔滨工业大学（深圳）" data-lang-en="Harbin Institute of Technology (Shenzhen)">哈尔滨工业大学（深圳）</h3>
+                        <p class="education-major" data-lang-zh="计算机科学与技术学院 | 本科大二在读" data-lang-en="School of Computer Science and Technology | Sophomore">计算机科学与技术学院 | 本科大二在读</p>
+                        <p class="education-time" data-lang-zh="2024.09 – 至今" data-lang-en="2024.09 – Present">2024.09 – 至今</p>
+                    </div>
+                </article>
+                <article class="education-card">
+                    <div class="education-logo" aria-hidden="true">
+                        <span>NUS</span>
+                    </div>
+                    <div class="education-info">
+                        <h3 data-lang-zh="新加坡国立大学" data-lang-en="National University of Singapore ">新加坡国立大学计算学院</h3>
+                        <p class="education-major" data-lang-zh="计算学院暑期学校 " data-lang-en="School of Computing Summer School Workshop ">暑期学校 | 人工智能与机器学习方向</p>
+                        <p class="education-time" data-lang-zh="2025.05 – 2025.07" data-lang-en="2025.05 – 2025.07">2025.05 – 2025.07</p>
+                    </div>
+                </article>
+                <div class="education-tagline">
+                    <p data-lang-zh="工科科技素养扎根 | 人文感知力同步生长" data-lang-en="Engineering Technical Literacy Rooted | Humanistic Sensibility Growing in Parallel">
+                        工科科技素养扎根 | 人文感知力同步生长
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+
+        <section class="section section-alt" id="skills" aria-labelledby="skills-title">
+            <div class="container">
+                <header class="section-header">
+                    <span class="section-label" aria-hidden="true">💻</span>
+                    <h2 class="section-title" id="skills-title" data-lang-zh="专业技术栈" data-lang-en="Tech Stack">专业技术栈</h2>
+                </header>
+                <div class="tech-stack-container">
+                    
+                    <div class="tech-stack-section">
+                        <h3 data-lang-zh="Technical Core | 技术内核" data-lang-en="Technical Core">Technical Core | 技术内核</h3>
+                        <div class="tech-stack-item">
+                            <span class="tech-stack-label" data-lang-zh="编程语言：" data-lang-en="Programming Languages:">编程语言：</span>
+                            <span class="tech-stack-value">Python / Java / C / <span data-lang-zh="前端基础" data-lang-en="Frontend Basics">前端基础</span>(HTML/CSS/JavaScript)</span>
+                        </div>
+                        <div class="tech-stack-item">
+                            <span class="tech-stack-label" data-lang-zh="技术方向：" data-lang-en="Tech Directions:">技术方向：</span>
+                            <span class="tech-stack-value" data-lang-zh="大模型基础应用 / 前端交互开发 / 数据处理 / 数字工具开发" data-lang-en="LLM Basic Applications / Frontend Interaction Development / Data Processing / Digital Tool Development">大模型基础应用 / 前端交互开发 / 数据处理 / 数字工具开发</span>
+                        </div>
+                        <div class="tech-stack-item">
+                            <span class="tech-stack-label" data-lang-zh="开发工具：" data-lang-en="Development Tools:">开发工具：</span>
+                            <span class="tech-stack-value">Git <span data-lang-zh="版本控制" data-lang-en="Version Control">版本控制</span> / VS Code / Jupyter Notebook / LaTeX</span>
+                        </div>
+                        <div class="tech-stack-item tech-stack-philosophy">
+                            <span class="tech-stack-label" data-lang-zh="技术理念：" data-lang-en="Tech Philosophy:">技术理念：</span>
+                            <span class="tech-stack-value" data-lang-zh="用技术为生活赋能，用代码为人文落地" data-lang-en="Empowering life with technology, grounding humanities with code">用技术为生活赋能，用代码为人文落地</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Notes Section -->
+
+        <section class="section section-alt" id="gallery" aria-labelledby="gallery-title">
+            <div class="container">
+                <header class="section-header">
+                    <span class="section-label" aria-hidden="true">📸</span>
+                    <h2 class="section-title" id="gallery-title" data-lang-zh="摄影作品集" data-lang-en="Photography Gallery">摄影作品集</h2>
+                </header>
+                <div class="gallery-intro">
+                    <p data-lang-zh="「用镜头定格旅途与日常，在光影中感受世界」" data-lang-en="Capturing journeys and daily life through lens, feeling world in light and shadow">
+                        「用镜头定格旅途与日常，在光影中感受世界」
+                    </p>
+                    <p data-lang-zh="专注风光、旅行、人文纪实摄影，用画面记录探索足迹；摄影既是爱好，也为产品设计、交互视觉提供灵感，展现技术之外的审美与感知力。"
+data-lang-en="Focusing on landscape, travel, and documentary photography, recording exploration footsteps through images. Photography is not only a hobby but also provides inspiration for product design and interaction visuals, showcasing aesthetic sensibility beyond technical skills.">
+                        专注风光、旅行、人文纪实摄影，用画面记录探索足迹；
+                        摄影既是爱好，也为产品设计、交互视觉提供灵感，展现技术之外的审美与感知力。
+                    </p>
+                </div>
+                <div class="gallery-container" role="region" aria-label="摄影作品集">
+                    <button class="gallery-nav gallery-nav-left" onclick="scrollGallery(-1)" aria-label="向左滚动查看更多照片">
+                        <span aria-hidden="true">‹</span>
+                    </button>
+                    <div class="gallery-scroll" id="galleryScroll" role="scrollbar" aria-live="polite">
+                        <!-- 图片将通过JavaScript动态加载 -->
+                    </div>
+                    <button class="gallery-nav gallery-nav-right" onclick="scrollGallery(1)" aria-label="向右滚动查看更多照片">
+                        <span aria-hidden="true">›</span>
+                    </button>
+                </div>
+                <p class="gallery-note" data-lang-zh="持续更新中" data-lang-en="Continuously Updating"><em>持续更新中</em></p>
+            </div>
+        </section>
+
+        <!-- Interests Section -->
+        <section class="section" id="interests" aria-labelledby="interests-title">
+            <div class="container">
+                <header class="section-header">
+                    <span class="section-label" aria-hidden="true">🌍</span>
+                    <h2 class="section-title" id="interests-title" data-lang-zh="兴趣爱好" data-lang-en="Interests">兴趣爱好</h2>
+                </header>
+                <div class="interests-grid">
+                    <div class="interest-item">
+                        <span class="interest-icon">📸</span>
+                        <h3 data-lang-zh="摄影创作" data-lang-en="Photography">摄影创作</h3>
+                        <p data-lang-zh="专注风光、旅行、人文纪实摄影。用镜头定格旅途与日常，在光影中感受世界，记录探索足迹。" data-lang-en="Focusing on landscape, travel, and documentary photography. Capturing journeys and daily life through lens, feeling world in light and shadow, recording exploration footsteps.">
+                            专注风光、旅行、人文纪实摄影。用镜头定格旅途与日常，在光影中感受世界，记录探索足迹。
+                        </p>
+                    </div>
+                    <div class="interest-item">
+                        <span class="interest-icon">🏃</span>
+                        <h3 data-lang-zh="户外运动" data-lang-en="Outdoor Sports">户外运动</h3>
+                        <p data-lang-zh="热爱徒步、跑步等户外活动。在大自然中释放活力，在挑战中磨砺意志，保持身心健康。" data-lang-en="Passionate about hiking, running, and other outdoor activities. Releasing vitality in nature, honing will in challenges, maintaining physical and mental health.">
+                            热爱徒步、跑步等户外活动。在大自然中释放活力，在挑战中磨砺意志，保持身心健康。
+                        </p>
+                    </div>
+                    <div class="interest-item">
+                        <span class="interest-icon">✈️</span>
+                        <h3 data-lang-zh="旅行探索" data-lang-en="Travel Exploration">旅行探索</h3>
+                        <p data-lang-zh="用脚步丈量世界，用心感受不同文化。在旅途中拓宽视野，在探索中发现自我，积累人生阅历。" data-lang-en="Measuring the world with footsteps, feeling different cultures with heart. Broadening horizons during journeys, discovering self in exploration, accumulating life experience.">
+                            用脚步丈量世界，用心感受不同文化。在旅途中拓宽视野，在探索中发现自我，积累人生阅历。
+                        </p>
+                    </div>
+                    <div class="interest-item">
+                        <span class="interest-icon">🎬</span>
+                        <h3 data-lang-zh="影视鉴赏" data-lang-en="Film Appreciation">影视鉴赏</h3>
+                        <p data-lang-zh="欣赏各类影视作品，感受叙事艺术与视觉魅力。从优秀作品中汲取灵感，培养审美素养与人文情怀。" data-lang-en="Appreciating various films and TV shows, feeling narrative art and visual charm. Drawing inspiration from excellent works, cultivating aesthetic literacy and humanistic sentiments.">
+                            欣赏各类影视作品，感受叙事艺术与视觉魅力。从优秀作品中汲取灵感，培养审美素养与人文情怀。
+                        </p>
+                    </div>
+                    <div class="interest-item">
+                        <span class="interest-icon">📚</span>
+                        <h3 data-lang-zh="品阅书籍" data-lang-en="Reading Books">品阅书籍</h3>
+                        <p data-lang-zh="热爱阅读各类书籍，从文学经典到科技前沿，在文字中汲取智慧，在阅读中沉淀思想，拓展认知边界，培养深度思考能力。" data-lang-en="Passionate about reading various books, from literary classics to cutting-edge technology. Gaining wisdom from words, settling thoughts through reading, expanding cognitive boundaries, and cultivating deep thinking abilities.">
+                            热爱阅读各类书籍，从文学经典到科技前沿，在文字中汲取智慧，在阅读中沉淀思想，拓展认知边界，培养深度思考能力。
+                        </p>
+                    </div>
+                    <div class="interest-item">
+                        <span class="interest-icon">🎵</span>
+                        <h3 data-lang-zh="欣赏音乐" data-lang-en="Music Appreciation">欣赏音乐</h3>
+                        <p data-lang-zh="热爱音乐，享受旋律带来的情感共鸣。最喜欢的歌手：泰勒·斯威夫特、孙燕姿、梦龙、拉娜·德雷。" data-lang-en="Passionate about music, enjoying the emotional resonance brought by melodies. Favorite singers: Taylor Swift, Stefanie Sun, Imagine Dragons, Lana Del Rey.">
+                            热爱音乐，享受旋律带来的情感共鸣。最喜欢的歌手：泰勒·斯威夫特、孙燕姿、梦龙、拉娜·德雷。
+                        </p>
+                    </div>
+                </div>
+                <div class="interests-summary">
+                    <p data-lang-zh="保持热爱与好奇，在探索中拓宽边界，平衡技术理性与人文感性。" data-lang-en="Keeping passion and curiosity alive, expanding boundaries through exploration, balancing technical rationality with humanistic sensibility.">
+                        保持热爱与好奇，在探索中拓宽边界，平衡技术理性与人文感性。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section section-alt" id="contact" aria-labelledby="contact-title">
+            <div class="container">
+                <header class="section-header">
+                    <span class="section-label" aria-hidden="true">📮</span>
+                    <h2 class="section-title" id="contact-title" data-lang-zh="联系我" data-lang-en="Contact">Contact 联系我</h2>
+                </header>
+                <div class="contact-content">
+                    <div class="contact-item">
+                        <span class="contact-icon" aria-hidden="true">📧</span>
+                        <div>
+                            <strong data-lang-zh="邮箱" data-lang-en="Email">邮箱</strong>
+                            <a href="mailto:mervinshi66@gmail.com" aria-label="发送邮件到 mervinshi66@gmail.com">mervinshi66@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon" aria-hidden="true">📱</span>
+                        <div>
+                            <strong data-lang-zh="电话" data-lang-en="Phone">电话</strong>
+                            <span>+86 173 1282 1717</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon" aria-hidden="true">🐙</span>
+                        <div>
+                            <strong>GitHub</strong>
+                            <a href="https://github.com/MervinShi" target="_blank" rel="noopener noreferrer" aria-label="访问 MervinShi 的 GitHub 主页">github.com/MervinShi</a>
+                        </div>
+                    </div>
+                    <div class="contact-actions">
+                        <a href="./resume/Resume_CN.pdf" id="resumeLink" class="btn btn-primary" target="_blank" rel="noopener noreferrer" aria-label="下载个人简历 PDF">
+                            <span aria-hidden="true">📄</span>
+                            <span id="resumeText" data-lang-zh="下载个人简历 PDF" data-lang-en="Download Resume PDF">下载个人简历 PDF</span>
+                        </a>
+                        <p class="contact-note" data-lang-zh="摄影作品集 / 社交平台（可自行补充）" data-lang-en="Portfolio / Social Links (Coming soon)">
+                            <em>摄影作品集 / 社交平台（可自行补充）</em>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <p data-lang-zh="© 2026 Mervin Shi | 用好奇心与代码构建" data-lang-en="© 2026 Mervin Shi | Built with curiosity & code">© 2026 Mervin Shi | 用好奇心与代码构建</p>
+                <p data-lang-zh="哈工大深圳 | 计算机科学与技术 | AI Explorer" data-lang-en="HIT Shenzhen | Computer Science & Technology | AI Explorer">哈工大深圳 | 计算机科学与技术 | AI Explorer</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
