@@ -247,7 +247,7 @@ body {
 
 .hero-title {
     font-family: 'MingMeiXiangChunTian', 'Brush Script MT', 'Cursive', 'Segoe Script', 'Snell Roundhand', 'Bradley Hand', 'Chalkboard SE', 'Comic Sans MS', cursive;
-    font-size: clamp(56px, 10vw, 96px);
+    font-size: clamp(32px, 10vw, 96px);
     font-weight: normal;
     letter-spacing: 0.02em;
     line-height: 1.1;
@@ -1057,12 +1057,55 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
-    .nav-menu {
+    /* Hide all nav links except the language dropdown */
+    .nav-menu > li:not(.nav-dropdown) {
         display: none;
     }
 
+    .nav-dropdown {
+        position: relative;
+    }
+
+    .nav-dropdown-menu {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        margin-top: 8px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: var(--shadow-lg);
+        min-width: 120px;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: var(--transition);
+    }
+
+    .nav-dropdown.active .nav-dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
     .nav-container {
-        justify-content: center;
+        justify-content: space-between;
+        padding: 8px 16px;
+        height: 52px;
+    }
+
+    .nav-logo {
+        font-size: 20px;
+    }
+
+    .nav-lang-btn {
+        background: rgba(0, 0, 0, 0.05);
+        padding: 6px 12px;
+        border-radius: 20px;
+    }
+
+    .nav-lang-btn:hover {
+        background: rgba(0, 0, 0, 0.1);
     }
 
     .section-title {
@@ -1077,8 +1120,15 @@ body {
         padding: 80px 0;
     }
 
+    .hero {
+        background-image: url('images/background.jpg');
+        background-size: cover;
+        background-position: center top;
+    }
+
     .hero-title {
-        font-size: 48px;
+        font-family: 'MingMeiXiangChunTian', 'Brush Script MT', 'Cursive', 'Segoe Script', 'Snell Roundhand', 'Bradley Hand', 'Chalkboard SE', 'Comic Sans MS', cursive;
+        font-size: 36px;
     }
 
     .hero-tags {
@@ -1203,10 +1253,15 @@ body {
     }
 
     .hero-title {
-        font-size: 36px;
+        font-family: 'MingMeiXiangChunTian', 'Brush Script MT', 'Cursive', 'Segoe Script', 'Snell Roundhand', 'Bradley Hand', 'Chalkboard SE', 'Comic Sans MS', cursive;
+        font-size: 32px;
     }
 
     .hero-subtitle {
+        font-size: 14px;
+    }
+
+    .hero-description {
         font-size: 16px;
     }
 
