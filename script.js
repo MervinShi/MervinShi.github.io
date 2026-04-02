@@ -175,16 +175,25 @@ document.querySelectorAll('.interest-item, .tech-stack-section, .education-card,
 // Simple fade-in animation for hero name - wait for font to load
 const heroName = document.getElementById('heroName');
 if (heroName) {
-    // Wait for custom font to load before showing name
-    // Set a timeout as fallback (3 seconds) in case font loading takes too long
-    const fontReady = document.fonts.ready;
+    // Set a shorter timeout as fallback (1.5 seconds) for mobile performance
     const fallbackTimeout = setTimeout(() => {
         heroName.classList.add('visible');
-    }, 3000);
+        console.log('Hero name shown via fallback timeout');
+    }, 1500);
 
-    fontReady.then(() => {
+    // Check if custom font is loaded
+    document.fonts.ready.then(() => {
+        clearTimeout(fallbackTimeout);
+        // Small delay to ensure font is actually rendered
+        setTimeout(() => {
+            heroName.classList.add('visible');
+            console.log('Hero name shown via font ready');
+        }, 100);
+    }).catch(() => {
+        // If font loading fails, show name anyway
         clearTimeout(fallbackTimeout);
         heroName.classList.add('visible');
+        console.log('Hero name shown via error fallback');
     });
 }
 
