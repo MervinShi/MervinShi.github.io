@@ -214,19 +214,17 @@ body {
     flex-direction: column;
     justify-content: center;
     padding: 120px 0 80px;
-    background-image: url('images/background.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: scroll;
+    background:
+        url('images/background.jpg'),
+        linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    background-size: cover, cover;
+    background-position: center, center;
+    background-repeat: no-repeat, no-repeat;
+    background-attachment: scroll, scroll;
+    background-color: #1a1a2e;
     color: white;
     position: relative;
     overflow: hidden;
-}
-
-/* Fallback gradient background (shown while image loads or if it fails) */
-.hero {
-    background-color: #1d1d1f;
 }
 
 .hero::before {
@@ -236,7 +234,8 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(29, 29, 31, 0.5) 100%);
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(29, 29, 31, 0.4) 100%);
+    pointer-events: none;
 }
 
 .hero-container {
@@ -1132,10 +1131,13 @@ body {
     }
 
     .hero {
-        background-image: url('images/background.jpg'), linear-gradient(135deg, #1d1d1f 0%, #424245 100%);
-        background-size: cover;
-        background-position: center top;
-        background-attachment: scroll;
+        background:
+            url('images/background.jpg'),
+            linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        background-size: cover, cover;
+        background-position: center top, center top;
+        background-repeat: no-repeat, no-repeat;
+        background-attachment: scroll, scroll;
         min-height: 100vh;
     }
 

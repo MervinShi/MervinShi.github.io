@@ -268,27 +268,53 @@ const HeroAnimation = {
 // Background image loader - ensures compatibility across devices
 const BackgroundLoader = {
     init() {
+        // Try to preload background image
         const bgImage = new Image();
-        bgImage.src = 'images/background.jpg';
 
-        bgImage.onload = () => {
-            console.log('Background image loaded');
-            const hero = document.querySelector('.hero');
-            if (hero) {
-                hero.style.backgroundImage = `url('images/background.jpg')`;
+        // Use multiple paths to ensure compatibility
+        const possiblePaths = [
+            './images/background.jpg',
+            'images/background.jpg',
+            '/images/background.jpg'
+        ];
+
+        let loaded = false;
+
+        const tryLoad = (index) => {
+            if (index >= possiblePaths.length) {
+                console.error('Background image failed to load, using CSS fallback');
+                return;
             }
+
+            bgImage.src = possiblePaths[index];
+
+            bgImage.onload = () => {
+                if (!loaded) {
+                    loaded = true;
+                    console.log('Background image loaded from:', possiblePaths[index]);
+                    const hero = document.querySelector('.hero');
+                    if (hero) {
+                        hero.classList.add('background-loaded');
+                    }
+                }
+            };
+
+            bgImage.onerror = () => {
+                console.warn('Failed to load from:', possiblePaths[index]);
+                // Try next path
+                tryLoad(index + 1);
+            };
         };
 
-        bgImage.onerror = () => {
-            console.error('Background image failed to load, using fallback gradient');
-            // Gradient fallback is already set in CSS
-        };
+        // Start trying to load
+        tryLoad(0);
 
-        // For mobile with slow connection, add a longer timeout
-        if (DeviceUtils.isSlowConnection()) {
+        // For mobile with slow connection, add a timeout
+        if (DeviceUtils.isSlowConnection() || DeviceUtils.isMobile()) {
             setTimeout(() => {
-                if (!bgImage.complete) {
-                    console.log('Background image taking too long, using fallback');
+                if (!loaded) {
+                    console.log('Background image timeout, using CSS fallback gradient');
+                    // CSS already has fallback gradient
                 }
             }, 3000);
         }
