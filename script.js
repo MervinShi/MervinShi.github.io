@@ -250,12 +250,20 @@ document.querySelectorAll('.interest-item, .tech-stack-section, .education-card,
     observer.observe(el);
 });
 
-// Simple fade-in animation for hero name
+// Simple fade-in animation for hero name - wait for font to load
 const heroName = document.getElementById('heroName');
 if (heroName) {
-    setTimeout(() => {
+    // Wait for custom font to load before showing name
+    // Set a timeout as fallback (3 seconds) in case font loading takes too long
+    const fontReady = document.fonts.ready;
+    const fallbackTimeout = setTimeout(() => {
         heroName.classList.add('visible');
-    }, 300);
+    }, 3000);
+
+    fontReady.then(() => {
+        clearTimeout(fallbackTimeout);
+        heroName.classList.add('visible');
+    });
 }
 
 // Gallery functionality - load images from images folder with performance optimization
@@ -313,10 +321,11 @@ async function loadGalleryImages() {
         galleryItem.className = `gallery-item gallery-item-${imageData.orientation}`;
 
         const img = document.createElement('img');
-        img.src = `./images/${imageData.file}`;
         img.alt = `Photo ${index + 1}`;
+        // Use data-src for lazy loading
+        img.dataset.src = `./images/${imageData.file}`;
         img.loading = 'lazy';
-        img.decoding = 'async'; // Add for better loading performance
+        img.decoding = 'async';
 
         galleryItem.appendChild(img);
 
@@ -357,6 +366,35 @@ async function loadGalleryImages() {
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(el);
         });
+    });
+
+    // Implement lazy loading for gallery images
+    const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                if (img.dataset.src && !img.src) {
+                    img.src = img.dataset.src;
+                    img.onload = () => {
+                        img.classList.add('loaded');
+                    };
+                    img.onerror = () => {
+                        // Fallback placeholder on error
+                        img.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23ddd" width="400" height="300"/%3E%3Ctext fill="%23999" x="50%25" y="50%25" text-anchor="middle"%3EImage not found%3C/text%3E%3C/svg%3E';
+                        img.classList.add('loaded');
+                    };
+                }
+                imageObserver.unobserve(img);
+            }
+        });
+    }, {
+        rootMargin: '50px',
+        threshold: 0.1
+    });
+
+    // Observe all gallery images for lazy loading
+    galleryScroll.querySelectorAll('img[data-src]').forEach(img => {
+        imageObserver.observe(img);
     });
 }
 
