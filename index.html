@@ -18,16 +18,27 @@
             font-display: swap;
         }
     </style>
+    <script type="importmap">
+    {
+        "imports": {
+            "@chenglou/pretext": "https://esm.sh/@chenglou/pretext@0.0.7"
+        }
+    }
+    </script>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="nav" role="navigation" aria-label="主导航">
         <div class="nav-container">
             <a href="#" class="nav-logo" aria-label="Mervin Shi 首页">MervinShi</a>
-            <ul class="nav-menu" role="menubar">
+            <button class="nav-toggle" id="navToggle" aria-label="菜单" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu" role="menubar">
                 <li role="none"><a href="#about" class="nav-link" role="menuitem" data-lang-zh="关于" data-lang-en="About">关于</a></li>
                 <li role="none"><a href="#education" class="nav-link" role="menuitem" data-lang-zh="教育" data-lang-en="Education">教育</a></li>
                 <li role="none"><a href="#skills" class="nav-link" role="menuitem" data-lang-zh="技能" data-lang-en="Skills">技能</a></li>
+                <li role="none"><a href="#projects" class="nav-link" role="menuitem" data-lang-zh="项目" data-lang-en="Projects">项目</a></li>
                 <li role="none"><a href="#gallery" class="nav-link" role="menuitem" data-lang-zh="摄影" data-lang-en="Gallery">摄影</a></li>
                 <li role="none"><a href="#interests" class="nav-link" role="menuitem" data-lang-zh="兴趣" data-lang-en="Interests">兴趣</a></li>
                 <li role="none"><a href="#contact" class="nav-link" role="menuitem" data-lang-zh="联系" data-lang-en="Contact">联系</a></li>
@@ -137,7 +148,7 @@ data-lang-en="I am a curiosity-driven computer science learner with an ENFP pers
                     <h2 class="section-title" id="skills-title" data-lang-zh="专业技术栈" data-lang-en="Tech Stack">专业技术栈</h2>
                 </header>
                 <div class="tech-stack-container">
-                    
+
                     <div class="tech-stack-section">
                         <h3 data-lang-zh="Technical Core | 技术内核" data-lang-en="Technical Core">Technical Core | 技术内核</h3>
                         <div class="tech-stack-item">
@@ -157,12 +168,69 @@ data-lang-en="I am a curiosity-driven computer science learner with an ENFP pers
                             <span class="tech-stack-value" data-lang-zh="用技术为生活赋能，用代码为人文落地" data-lang-en="Empowering life with technology, grounding humanities with code">用技术为生活赋能，用代码为人文落地</span>
                         </div>
                     </div>
+
+                    <div class="skill-tags-section">
+                        <h3 data-lang-zh="Skill Tags | 技能标签" data-lang-en="Skill Tags">Skill Tags | 技能标签</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">C</span>
+                            <span class="skill-tag">HTML/CSS</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">LLM</span>
+                            <span class="skill-tag">LangChain</span>
+                            <span class="skill-tag">RAG</span>
+                            <span class="skill-tag">Prompt Engineering</span>
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">VS Code</span>
+                            <span class="skill-tag">Jupyter</span>
+                            <span class="skill-tag">LaTeX</span>
+                            <span class="skill-tag">Pandas</span>
+                            <span class="skill-tag">Streamlit</span>
+                            <span class="skill-tag">Data Visualization</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Tech Notes Section -->
+        <!-- Projects Section -->
+        <section class="section" id="projects" aria-labelledby="projects-title">
+            <div class="container">
+                <header class="section-header">
+                    <span class="section-label" aria-hidden="true">🚀</span>
+                    <h2 class="section-title" id="projects-title" data-lang-zh="项目经历" data-lang-en="Projects">项目经历</h2>
+                </header>
+                <div class="projects-grid">
+                    <article class="project-card">
+                        <div class="project-icon" aria-hidden="true">🤖</div>
+                        <h3 data-lang-zh="AI 对话助手" data-lang-en="AI Chat Assistant">AI 对话助手</h3>
+                        <p class="project-desc" data-lang-zh="基于大语言模型的智能对话系统，支持多轮对话、上下文记忆和个性化回复生成，集成 RAG 检索增强生成技术。" data-lang-en="LLM-powered conversational agent with multi-turn dialogue, context memory, and personalized response generation, integrating RAG technology.">基于大语言模型的智能对话系统，支持多轮对话、上下文记忆和个性化回复生成，集成 RAG 检索增强生成技术。</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span><span class="tag">LangChain</span><span class="tag">RAG</span><span class="tag">Streamlit</span>
+                        </div>
+                    </article>
+                    <article class="project-card">
+                        <div class="project-icon" aria-hidden="true">🌐</div>
+                        <h3 data-lang-zh="个人网站" data-lang-en="Personal Website">个人网站</h3>
+                        <p class="project-desc" data-lang-zh="响应式个人网站，采用 Apple 风格设计，支持中英双语切换，集成 Pretext 文字排版引擎实现动态文字环绕效果。" data-lang-en="Responsive personal website with Apple-style design, bilingual CN/EN support, and dynamic text layout powered by the Pretext engine.">响应式个人网站，采用 Apple 风格设计，支持中英双语切换，集成 Pretext 文字排版引擎实现动态文字环绕效果。</p>
+                        <div class="project-tags">
+                            <span class="tag">HTML/CSS</span><span class="tag">JavaScript</span><span class="tag">Canvas</span><span class="tag">Pretext</span>
+                        </div>
+                    </article>
+                    <article class="project-card">
+                        <div class="project-icon" aria-hidden="true">📊</div>
+                        <h3 data-lang-zh="数据分析工具箱" data-lang-en="Data Analysis Toolkit">数据分析工具箱</h3>
+                        <p class="project-desc" data-lang-zh="Python 数据处理与可视化工具集，支持多种数据源接入、自动化清洗流程和交互式图表生成，提升数据分析效率。" data-lang-en="Python data processing and visualization toolkit supporting multiple data sources, automated cleaning pipelines, and interactive chart generation.">Python 数据处理与可视化工具集，支持多种数据源接入、自动化清洗流程和交互式图表生成，提升数据分析效率。</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Matplotlib</span><span class="tag">Jupyter</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
 
+        <!-- Gallery Section -->
         <section class="section section-alt" id="gallery" aria-labelledby="gallery-title">
             <div class="container">
                 <header class="section-header">
@@ -296,16 +364,53 @@ data-lang-en="Focusing on landscape, travel, and documentary photography, record
         </section>
     </main>
 
+    <!-- Stats Bar -->
+    <section class="stats-bar" aria-label="个人统计">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number"><span class="counter" data-target="2">0</span>+</span>
+                    <span class="stat-label" data-lang-zh="编程年限" data-lang-en="Years Coding">编程年限</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number"><span class="counter" data-target="10">0</span>+</span>
+                    <span class="stat-label" data-lang-zh="项目经验" data-lang-en="Projects Done">项目经验</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number"><span class="counter" data-target="2">0</span></span>
+                    <span class="stat-label" data-lang-zh="学习国家" data-lang-en="Countries Studied">学习国家</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number"><span class="counter" data-target="5000">0</span>+</span>
+                    <span class="stat-label" data-lang-zh="摄影作品" data-lang-en="Photos Taken">摄影作品</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-content">
+                <div class="footer-social">
+                    <a href="mailto:mervinshi66@gmail.com" class="footer-social-link" aria-label="Email">📧</a>
+                    <a href="https://github.com/MervinShi" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="GitHub">🐙</a>
+                    <a href="#" class="footer-social-link" aria-label="小红书">📕</a>
+                </div>
                 <p data-lang-zh="© 2026 Mervin Shi | 用好奇心与代码构建" data-lang-en="© 2026 Mervin Shi | Built with curiosity & code">© 2026 Mervin Shi | 用好奇心与代码构建</p>
                 <p data-lang-zh="哈工大深圳 | 计算机科学与技术 | AI Explorer" data-lang-en="HIT Shenzhen | Computer Science & Technology | AI Explorer">哈工大深圳 | 计算机科学与技术 | AI Explorer</p>
             </div>
         </div>
     </footer>
 
+    <script type="module">
+        import { initPretextHero } from './pretext-hero.js';
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => initPretextHero());
+        } else {
+            initPretextHero();
+        }
+    </script>
     <script src="script.js" defer></script>
 </body>
 </html>
