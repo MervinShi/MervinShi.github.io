@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git *)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebSearch",
+      "WebFetch(domain:www.npmjs.com)",
+      "WebFetch(domain:somnai-dreams.github.io)",
+      "WebFetch(domain:chenglou.me)",
+      "WebFetch(domain:bestofjs.org)",
+      "Bash(node *)",
+      "Bash(python3 -m http.server 8080)",
+      "Bash(curl -s http://localhost:8080/)",
+      "Bash(curl -sI https://esm.sh/@chenglou/pretext@0.0.7)",
+      "Bash(kill %1)",
+      "Bash(python3 -m http.server 8081)",
+      "Skill(agent-browser)",
+      "Bash(npm i *)",
+      "Bash(kill %2)"
+    ]
+  }
+}
